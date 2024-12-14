@@ -12,11 +12,11 @@ export const SMessage = {
 export const EMessage = {
  IsNotMatch : "Password not match",
  NotFound: "Not Found",
-
  Unauthorization: "Unanuthorization",
  BadRequest: "Bad Request",
  ErrServer: "Error Server Internal", 
  ErrInsert: "Error Insert",
  ErrUpdate: "Error Update",
- ErrDelete: "Error Delete"
+ ErrDelete: "Error Delete",
+ ServerInternal: "Error Server Internal"
 }

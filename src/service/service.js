@@ -40,6 +40,7 @@ export const VertifyToken = async (token) => {
     try {
       jwt.verify(token, SCRETE_KEY, async (err, decode) => {
         if (err) reject(err);
+        console.log(decode);
         const user = await FindOneUser(decode.id);
         if (!user) {
           reject(err);
@@ -58,6 +59,20 @@ export const FindOneUser = async (userID) => {
       connected.query(checkUser, userID, (err, result) => {
         if (err) reject(err);
         if (!result[0]) reject(EMessage.NotFound + " user");
+        resovle(result[0]);
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+export const CheckEmail = async (email) => {
+  return new Promise(async (resovle, reject) => {
+    try {
+      const checkEmail = "Select * from user where email=?";
+      connected.query(checkEmail, email, (err, result) => {
+        if (err) reject(err);
+        if (!result[0]) reject(EMessage.NotFound + " email");
         resovle(result[0]);
       });
     } catch (error) {

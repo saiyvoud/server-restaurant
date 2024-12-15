@@ -40,7 +40,7 @@ export const VertifyToken = async (token) => {
     try {
       jwt.verify(token, SCRETE_KEY, async (err, decode) => {
         if (err) reject(err);
-        console.log(decode);
+
         const user = await FindOneUser(decode.id);
         if (!user) {
           reject(err);
@@ -62,6 +62,24 @@ export const FindOneUser = async (userID) => {
         resovle(result[0]);
       });
     } catch (error) {
+      reject(error);
+    }
+  });
+};
+export const FindOneCategory = async (categoryID) => {
+  return new Promise(async (resovle, reject) => {
+    try {
+      const checkCategory = "Select * from category where categoryID=?";
+      connected.query(checkCategory, categoryID, (err, result) => {
+        if (err) reject(err);
+
+        if (!result[0]) {
+          reject(EMessage.NotFound + " category");
+        }
+        resovle(true);
+      });
+    } catch (error) {
+      console.log(error);
       reject(error);
     }
   });

@@ -1,5 +1,6 @@
 export const SMessage = {
   Register : "Register Success",
+  Insert: "Insert Success",
   Login: "Login Success",
   SelectAll: "Select All Success",
   SelectOne: "Select One Success",
@@ -18,5 +19,6 @@ export const EMessage = {
  ErrInsert: "Error Insert",
  ErrUpdate: "Error Update",
  ErrDelete: "Error Delete",
+ ErrUpload: "Error Upload",
  ServerInternal: "Error Server Internal"
 }

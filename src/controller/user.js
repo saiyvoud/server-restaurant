@@ -148,6 +148,7 @@ export default class UserController {
           return SendSuccess(res, SMessage.Update);
         }
       );
+      //-----
     } catch (error) {
       return SendError(res, 500, EMessage.ErrServer, error);
     }

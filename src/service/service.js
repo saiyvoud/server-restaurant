@@ -52,6 +52,52 @@ export const VertifyToken = async (token) => {
     }
   });
 };
+export const FindOneMenu = async (menuID) => {
+  return new Promise(async (resovle, reject) => {
+    try {
+      const checkMenu = "Select * from menu where menuID=?";
+      connected.query(checkMenu, menuID, (err, result) => {
+        if (err) reject(err);
+        if (!result[0]) reject(EMessage.NotFound + " menu");
+        resovle(result[0]);
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+export const FindOneSaleDetail = async (sale_detail_ID) => {
+  return new Promise(async (resovle, reject) => {
+    try {
+      const checkSaleDetail =
+        "Select * from sale_detail where sale_detail_ID=?";
+      connected.query(checkSaleDetail, sale_detail_ID, (err, result) => {
+        if (err) reject(err);
+        if (!result[0]) reject(EMessage.NotFound + " sale");
+        resovle(result[0]);
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+export const FindOneSale = async (saleID) => {
+  return new Promise(async (resovle, reject) => {
+    try {
+      const checkSale = "Select * from sale where saleID=?";
+      connected.query(checkSale, saleID, (err, result) => {
+        if (err) reject(err);
+        if (!result[0]) {
+          console.log(result);
+          reject(EMessage.NotFound + " sale");
+        }
+        resovle(result[0]);
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 export const FindOneUser = async (userID) => {
   return new Promise(async (resovle, reject) => {
     try {
@@ -75,6 +121,24 @@ export const FindOneCategory = async (categoryID) => {
 
         if (!result[0]) {
           reject(EMessage.NotFound + " category");
+        }
+        resovle(true);
+      });
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+};
+export const CheckMenu = async (menuID) => {
+  return new Promise(async (resovle, reject) => {
+    try {
+      const checkMenu = "Select * from menu where menuID=?";
+      connected.query(checkMenu, menuID, (err, result) => {
+        if (err) reject(err);
+
+        if (!result[0]) {
+          reject(EMessage.NotFound + " menu");
         }
         resovle(true);
       });
